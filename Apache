@@ -1,0 +1,17 @@
+<VirtualHost *:80>
+    ServerName ec2-x-x-x-x.compute-1.amazonaws.com
+    WSGIDaemonProcess flaskapp threads=5
+    WSGIScriptAlias / /home/ubuntu/flaskapp/flaskapp.wsgi
+
+    <Directory /home/ubuntu/flaskapp>
+        Require all granted
+    </Directory>
+
+    Alias /static /home/ubuntu/flaskapp/static
+    <Directory /home/ubuntu/flaskapp/static/>
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
